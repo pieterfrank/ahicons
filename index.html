@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .gallery img {
+            margin: 10px;
+            max-width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>SVG Gallery</h1>
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        const svgFiles = [
+            // Add the names of your SVG files here
+            'image1.svg',
+            'image2.svg',
+            'image3.svg'
+        ];
+
+        const gallery = document.getElementById('gallery');
+        svgFiles.forEach(file => {
+            const img = document.createElement('img');
+            img.src = `https://raw.githubusercontent.com/USERNAME/REPOSITORY/main/${file}`;
+            img.alt = file;
+            gallery.appendChild(img);
+        });
+    </script>
+</body>
+</html>
