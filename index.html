@@ -16,20 +16,37 @@
             justify-content: center;
         }
         .logo {
-        width: auto; /* Maintain aspect ratio */
-        height: 20px; /* Set height to 24px */
-        margin-right: 10px; /* Space between logo and title */
-        vertical-align: center; /* Align with text */
-    }
+            width: auto; /* Maintain aspect ratio */
+            height: 20px; /* Set height to 24px */
+            margin-right: 10px; /* Space between logo and title */
+            vertical-align: center; /* Align with text */
+        }
         .gallery img {
             margin: 10px;
             max-width: 150px;
             height: auto;
         }
+        .download-button {
+            background-color: black; /* Button color */
+            color: white; /* Text color */
+            border: none; /* No border */
+            border-radius: 20px; /* Pill shape */
+            padding: 10px 20px; /* Padding */
+            cursor: pointer; /* Pointer on hover */
+            font-size: 16px; /* Font size */
+            margin: 20px 0; /* Space above and below the button */
+        }
+        .download-button:hover {
+            background-color: #333; /* Darker shade on hover */
+        }
     </style>
 </head>
 <body>
     <h2><img src="logo.svg" alt="Logo" class="logo">AH Icons</h2>
+
+    <!-- Download Button -->
+    <button class="download-button" onclick="downloadZip()">Download All</button>
+
     <div class="gallery" id="gallery"></div>
 
     <script>
@@ -74,20 +91,19 @@
             'Oven_Airfryer_Icon_AH_filled.svg',
             'Oven_Airfryer_Icon_AH_outlined.svg',
             'Oven_Icon_AH_filled.svg',
-             'Oven_Icon_AH_outlined.svg',
-             'Pan_Icon_AH_filled.svg',
-             'Pan_Icon_AH_outlined.svg',
-             'Risteretto_Icon_AH_Flat.svg',
-             'Senseo_AH_Flat.svg',
-             'Senseo_Pads_Icon_AH.svg',
-             'Staafmixer_Icon_AH_filled.svg',
-             'Staafmixer_Icon_AH_outlined.svg',
-             'Volautomaat_Icon_AH_Flat.svg',
-             'Waterdruppel_Icon_AH_filled.svg',
-             'Waterdruppel_Icon_AH_outlined.svg',
-             'Wok_Icon_AH_filled.svg',
-             'Wok_Icon_AH_outlined.svg',
-            
+            'Oven_Icon_AH_outlined.svg',
+            'Pan_Icon_AH_filled.svg',
+            'Pan_Icon_AH_outlined.svg',
+            'Risteretto_Icon_AH_Flat.svg',
+            'Senseo_AH_Flat.svg',
+            'Senseo_Pads_Icon_AH.svg',
+            'Staafmixer_Icon_AH_filled.svg',
+            'Staafmixer_Icon_AH_outlined.svg',
+            'Volautomaat_Icon_AH_Flat.svg',
+            'Waterdruppel_Icon_AH_filled.svg',
+            'Waterdruppel_Icon_AH_outlined.svg',
+            'Wok_Icon_AH_filled.svg',
+            'Wok_Icon_AH_outlined.svg',
         ];
 
         const gallery = document.getElementById('gallery');
@@ -97,6 +113,16 @@
             img.alt = file;
             gallery.appendChild(img);
         });
+
+        // Function to download the ZIP file
+        function downloadZip() {
+            const link = document.createElement('a');
+            link.href = 'https://github.com/pieterfrank/ahicons/raw/main/ahicons.zip'; // Update with your repo details
+            link.download = 'ahicons.zip'; // Specify the file name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     </script>
 </body>
 </html>
