@@ -17,28 +17,31 @@
         }
         .logo {
             width: auto; /* Maintain aspect ratio */
-            height: 20px; /* Set height to 24px */
+            height: 20px; /* Set height to 20px */
             margin-right: 10px; /* Space between logo and title */
             vertical-align: center; /* Align with text */
         }
         .gallery img {
             margin: 10px;
-            max-width: 150px;
+            max-width: 150px; /* Initial max width */
             height: auto;
         }
         .download-button {
-    background-color: black; /* Button color */
-    color: white; /* Text color */
-    border: none; /* No border */
-    border-radius: 20px; /* Pill shape */
-    padding: 8px 14px; /* Increase padding for larger button */
-    cursor: pointer; /* Pointer on hover */
-    font-size: 10px; /* Increase font size */
-    margin: 10px 0; /* Space above and below the button */
-    width: 100px; /* Set a specific width (optional) */
-}
+            background-color: black; /* Button color */
+            color: white; /* Text color */
+            border: none; /* No border */
+            border-radius: 20px; /* Pill shape */
+            padding: 8px 16px; /* Adjust padding for size */
+            cursor: pointer; /* Pointer on hover */
+            font-size: 14px; /* Font size */
+            margin: 10px 0; /* Space above and below the button */
+        }
         .download-button:hover {
             background-color: #333; /* Darker shade on hover */
+        }
+        .slider {
+            width: 80%; /* Adjust width as needed */
+            margin: 20px 0; /* Space around the slider */
         }
     </style>
 </head>
@@ -47,6 +50,10 @@
 
     <!-- Download Button -->
     <button class="download-button" onclick="downloadZip()">Download All</button>
+
+    <!-- Size Slider -->
+    <label for="size-slider">Icon Size:</label>
+    <input type="range" id="size-slider" class="slider" min="50" max="300" value="150">
 
     <div class="gallery" id="gallery"></div>
 
@@ -112,6 +119,7 @@
             const img = document.createElement('img');
             img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
             img.alt = file;
+            img.style.width = '150px'; // Initial width
             gallery.appendChild(img);
         });
 
@@ -124,6 +132,15 @@
             link.click();
             document.body.removeChild(link);
         }
+
+        // Update image sizes based on slider input
+        const slider = document.getElementById('size-slider');
+        slider.addEventListener('input', () => {
+            const images = document.querySelectorAll('.gallery img');
+            images.forEach(image => {
+                image.style.width = `${slider.value}px`; // Update width based on slider value
+            });
+        });
     </script>
 </body>
 </html>
