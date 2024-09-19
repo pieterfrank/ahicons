@@ -6,36 +6,55 @@
     <title>SVG Gallery</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        .gallery {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .svg-container {
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .svg-container img {
+            width: 100%;
+            height: auto;
         }
         .logo {
-        width: auto; /* Maintain aspect ratio */
-        height: 20px; /* Set height to 24px */
-        margin-right: 10px; /* Space between logo and title */
-        vertical-align: center; /* Align with text */
-    }
-        .gallery img {
-            margin: 10px;
-            max-width: 150px;
-            height: auto;
+            height: 1em; /* Match the height of the h1 text */
+            width: auto; /* Maintain aspect ratio */
+            margin-right: 10px; /* Space between logo and title */
+            vertical-align: middle; /* Align with text */
+        }
+        h1 {
+            display: inline-flex; /* Align logo and title */
+            align-items: center; /* Center vertically */
+        }
+        .slider {
+            margin: 20px 0;
+            width: 80%; /* Adjust as needed */
         }
     </style>
 </head>
 <body>
-    <h2><img src="logo.svg" alt="Logo" class="logo">AH Icons</h2>
-    <div class="gallery" id="gallery"></div>
+    <h1>
+        <img src="logo.svg" alt="Logo" class="logo">
+        SVG Gallery
+    </h1>
+    
+    <label for="size-slider">Image Size:</label>
+    <input type="range" id="size-slider" class="slider" min="50" max="300" value="100">
+
+    <div id="gallery"></div>
 
     <script>
         const svgFiles = [
-            // Add the names of your SVG files here
-            'Airfryer_Icon_AH_filled.svg',
+             'Airfryer_Icon_AH_filled.svg',
             'Airfryer_Icon_AH_outlined.svg',
             'Bowl_Icon_AH_filled.svg',
             'Bowl_Icon_AH_outlined.svg',
@@ -87,15 +106,29 @@
              'Waterdruppel_Icon_AH_outlined.svg',
              'Wok_Icon_AH_filled.svg',
              'Wok_Icon_AH_outlined.svg',
-            
+            // Add more SVG file names here
         ];
 
         const gallery = document.getElementById('gallery');
+        const slider = document.getElementById('size-slider');
+
         svgFiles.forEach(file => {
+            const container = document.createElement('div');
+            container.className = 'svg-container';
             const img = document.createElement('img');
-            img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
+            img.src = file;
             img.alt = file;
-            gallery.appendChild(img);
+            img.style.width = `${slider.value}%`; // Set initial width based on slider
+            container.appendChild(img);
+            gallery.appendChild(container);
+        });
+
+        // Update image sizes based on slider input
+        slider.addEventListener('input', () => {
+            const images = document.querySelectorAll('.svg-container img');
+            images.forEach(image => {
+                image.style.width = `${slider.value}%`; // Update width based on slider value
+            });
         });
     </script>
 </body>
