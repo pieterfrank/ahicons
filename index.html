@@ -6,46 +6,29 @@
     <title>SVG Gallery</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
         }
-        .svg-container {
+        .gallery img {
             margin: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .svg-container img {
-            width: 100%;
+            max-width: 150px;
             height: auto;
-        }
-        .logo {
-            width: 50px; /* Adjust size as needed */
-            height: auto; /* Maintain aspect ratio */
-            margin-right: 10px; /* Space between logo and title */
-            vertical-align: middle; /* Align with text */
-        }
-        h1 {
-            display: inline-flex; /* Align logo and title */
-            align-items: center; /* Center vertically */
         }
     </style>
 </head>
 <body>
-    <h1>
-        <img src="logo.svg" alt="Logo" class="logo">
-        SVG Gallery
-    </h1>
-    <div id="gallery"></div>
+    <h1><img src="logo.svg" alt="Logo" class="logo">AH Icons</h1>
+    <div class="gallery" id="gallery"></div>
 
     <script>
         const svgFiles = [
+            // Add the names of your SVG files here
             'Airfryer_Icon_AH_filled.svg',
             'Airfryer_Icon_AH_outlined.svg',
             'Bowl_Icon_AH_filled.svg',
@@ -98,19 +81,15 @@
              'Waterdruppel_Icon_AH_outlined.svg',
              'Wok_Icon_AH_filled.svg',
              'Wok_Icon_AH_outlined.svg',
-            // Add more SVG file names here
+            
         ];
 
         const gallery = document.getElementById('gallery');
-
         svgFiles.forEach(file => {
-            const container = document.createElement('div');
-            container.className = 'svg-container';
             const img = document.createElement('img');
-            img.src = file;
+            img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
             img.alt = file;
-            container.appendChild(img);
-            gallery.appendChild(container);
+            gallery.appendChild(img);
         });
     </script>
 </body>
