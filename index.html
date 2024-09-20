@@ -43,22 +43,6 @@
             width: 10%; /* Adjust width as needed */
             margin: 20px 0; /* Space around the slider */
         }
-        .icon-button {
-    background: none; /* No background */
-    border: none; /* No border */
-    padding: 0; /* Remove padding */
-    cursor: pointer; /* Pointer on hover */
-    outline: none; /* Remove outline */
-}
-
-.icon-button img {
-    transition: filter 0.3s; /* Smooth transition for the hover effect */
-}
-
-.icon-button:hover img {
-    filter: brightness(1.2); /* Make the icon lighter on hover */
-}
-
     </style>
 </head>
 <body>
@@ -138,61 +122,42 @@
             'Timer-5-mintuten-AH-outline.svg',
         ];
 
-];
-
-const gallery = document.getElementById('gallery');
+       const gallery = document.getElementById('gallery');
 const slider = document.getElementById('size-slider');
 
 // Set the default size based on the slider's minimum value
 const defaultSize = slider.min;
 svgFiles.forEach(file => {
-    const imgContainer = document.createElement('div');
-    
-    // Create a button for the SVG icon
-    const button = document.createElement('button');
-    button.className = 'icon-button';
-    
     const img = document.createElement('img');
     img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
     img.alt = file;
     img.style.width = `${defaultSize}px`; // Set initial width to the smallest size
-
-    // Append the image to the button
-    button.appendChild(img);
-    
-    // Set the click event to download the files
-    button.onclick = () => {
-        downloadFile(file);
-    };
-
-    // Append the button to the gallery
-    gallery.appendChild(button);
+    gallery.appendChild(img);
 });
-
-// Function to download the SVG and EPS files
-function downloadFile(fileName) {
-    const svgLink = document.createElement('a');
-    svgLink.href = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName}`;
-    svgLink.download = fileName; // Set the filename for the SVG download
-    document.body.appendChild(svgLink);
-    svgLink.click();
-    document.body.removeChild(svgLink);
-
-    // Create and download the EPS file
-    const epsLink = document.createElement('a');
-    const epsFileName = fileName.replace('.svg', '.eps'); // Change extension to .eps
-    epsLink.href = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${epsFileName}`;
-    epsLink.download = epsFileName; // Set the filename for the EPS download
-    document.body.appendChild(epsLink);
-    epsLink.click();
-    document.body.removeChild(epsLink);
-}
 
 // Update image sizes based on slider input
 slider.addEventListener('input', () => {
-    const buttons = document.querySelectorAll('.icon-button img');
-    buttons.forEach(image => {
-        image.style.width = `${slider.value}px`; // Update width based on slider value
+    const images = document.querySelectorAll('.gallery img');
+    images.forEach(image => {
+        image.style.width = `${slider.value}px`; // Ensure width is based on the slider value directly
+    });
+});
+
+        // Function to download the ZIP file
+        function downloadZip() {
+            const link = document.createElement('a');
+            link.href = 'https://github.com/pieterfrank/ahicons/raw/main/ahicons.zip'; // Update with your repo details
+            link.download = 'ahicons.zip'; // Specify the file name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+    // Update image sizes based on slider input
+slider.addEventListener('input', () => {
+    const images = document.querySelectorAll('.gallery img');
+    images.forEach(image => {
+        image.style.width = `${slider.value}px`; // Set width based on the slider's value directly
     });
 });
 
