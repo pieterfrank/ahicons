@@ -25,6 +25,10 @@
             max-width: 150px;
             height: auto;
             cursor: pointer; /* Change cursor to pointer */
+            transition: filter 0.3s ease; /* Smooth transition */
+        }
+        .gallery img:hover {
+            filter: brightness(1.2); /* Lighter tint on hover */
         }
         .download-button {
             background-color: black;
@@ -130,7 +134,7 @@
             img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
             img.alt = `${file.replace(/_/g, ' ').replace('.svg', '')} icon`;
             img.style.width = `${defaultSize}px`;
-            img.onclick = () => downloadFile(file); // Add click event to download the SVG
+            img.onclick = () => downloadFile(file);
             gallery.appendChild(img);
         });
 
@@ -142,45 +146,44 @@
             });
         });
 
-     // Function to download the individual SVG and EPS files
-async function downloadFile(fileName) {
-    const svgUrl = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName}`;
-    const epsUrl = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName.replace('.svg', '.eps')}`;
+        // Function to download the individual SVG and EPS files
+        async function downloadFile(fileName) {
+            const svgUrl = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName}`;
+            const epsUrl = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName.replace('.svg', '.eps')}`;
 
-    try {
-        // Fetch SVG file
-        const svgResponse = await fetch(svgUrl);
-        if (!svgResponse.ok) throw new Error('SVG Network response was not ok');
+            try {
+                // Fetch SVG file
+                const svgResponse = await fetch(svgUrl);
+                if (!svgResponse.ok) throw new Error('SVG Network response was not ok');
 
-        const svgBlob = await svgResponse.blob();
-        const svgLink = document.createElement('a');
-        svgLink.href = window.URL.createObjectURL(svgBlob);
-        svgLink.download = fileName;
+                const svgBlob = await svgResponse.blob();
+                const svgLink = document.createElement('a');
+                svgLink.href = window.URL.createObjectURL(svgBlob);
+                svgLink.download = fileName;
 
-        // Trigger SVG download
-        document.body.appendChild(svgLink);
-        svgLink.click();
-        document.body.removeChild(svgLink);
+                // Trigger SVG download
+                document.body.appendChild(svgLink);
+                svgLink.click();
+                document.body.removeChild(svgLink);
 
-        // Fetch EPS file
-        const epsResponse = await fetch(epsUrl);
-        if (!epsResponse.ok) throw new Error('EPS Network response was not ok');
+                // Fetch EPS file
+                const epsResponse = await fetch(epsUrl);
+                if (!epsResponse.ok) throw new Error('EPS Network response was not ok');
 
-        const epsBlob = await epsResponse.blob();
-        const epsLink = document.createElement('a');
-        epsLink.href = window.URL.createObjectURL(epsBlob);
-        epsLink.download = fileName.replace('.svg', '.eps');
+                const epsBlob = await epsResponse.blob();
+                const epsLink = document.createElement('a');
+                epsLink.href = window.URL.createObjectURL(epsBlob);
+                epsLink.download = fileName.replace('.svg', '.eps');
 
-        // Trigger EPS download
-        document.body.appendChild(epsLink);
-        epsLink.click();
-        document.body.removeChild(epsLink);
+                // Trigger EPS download
+                document.body.appendChild(epsLink);
+                epsLink.click();
+                document.body.removeChild(epsLink);
 
-    } catch (error) {
-        console.error('There was a problem with the download:', error);
-    }
-}
-
+            } catch (error) {
+                console.error('There was a problem with the download:', error);
+            }
+        }
 
         // Function to download all icons as a ZIP file
         function downloadAllZip() {
