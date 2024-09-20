@@ -53,7 +53,8 @@
 
     <!-- Size Slider -->
     <label for="size-slider">Icon Size:</label>
-    <input type="range" id="size-slider" class="slider" min="24" max="350" value="24">
+ <input type="range" id="size-slider" class="slider" min="30" max="200" value="30">
+
 
     <div class="gallery" id="gallery"></div>
 
@@ -140,14 +141,14 @@
             document.body.removeChild(link);
         }
 
-        // Update image sizes based on slider input
-        const slider = document.getElementById('size-slider');
-        slider.addEventListener('input', () => {
-            const images = document.querySelectorAll('.gallery img');
-            images.forEach(image => {
-                image.style.width = `${slider.value}px`; // Update width based on slider value
-            });
-        });
+    // Update image sizes based on slider input
+slider.addEventListener('input', () => {
+    const images = document.querySelectorAll('.gallery img');
+    images.forEach(image => {
+        image.style.width = `${slider.value}px`; // Set width based on the slider's value directly
+    });
+});
+
     </script>
 </body>
 </html>
