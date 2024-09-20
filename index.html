@@ -16,10 +16,9 @@
             justify-content: center;
         }
         .logo {
-            width: auto;
             height: 20px;
             margin-right: 10px;
-            vertical-align: middle; /* Corrected vertical alignment */
+            vertical-align: middle;
         }
         .gallery img {
             margin: 10px;
@@ -46,12 +45,12 @@
     </style>
 </head>
 <body>
-    <h1><img src="logo.svg" alt="AH Icons Logo" class="logo"> AH Icons</h1>
+    <h1>
+        <img src="logo.svg" alt="AH Icons Logo" class="logo"> AH Icons
+    </h1>
 
-    <!-- Download Button -->
     <button class="download-button" onclick="downloadZip()" aria-label="Download all icons">Download All</button>
 
-    <!-- Size Slider -->
     <label for="size-slider">Icon Size:</label>
     <input type="range" id="size-slider" class="slider" min="30" max="200" value="30" aria-label="Adjust icon size">
 
@@ -122,8 +121,9 @@
 
         const gallery = document.getElementById('gallery');
         const slider = document.getElementById('size-slider');
-
         const defaultSize = slider.min;
+
+        // Populate the gallery with images
         svgFiles.forEach(file => {
             const img = document.createElement('img');
             img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
