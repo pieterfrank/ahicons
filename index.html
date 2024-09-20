@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AHicons</title>
+    <title>AH Icons - Icon Gallery</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,51 +16,49 @@
             justify-content: center;
         }
         .logo {
-            width: auto; /* Maintain aspect ratio */
-            height: 20px; /* Set height to 20px */
-            margin-right: 10px; /* Space between logo and title */
-            vertical-align: center; /* Align with text */
+            width: auto;
+            height: 20px;
+            margin-right: 10px;
+            vertical-align: middle; /* Corrected vertical alignment */
         }
         .gallery img {
             margin: 10px;
-            max-width: 150px; /* Initial max width */
+            max-width: 150px;
             height: auto;
         }
         .download-button {
-            background-color: black; /* Button color */
-            color: white; /* Text color */
-            border: none; /* No border */
-            border-radius: 20px; /* Pill shape */
-            padding: 8px 16px; /* Adjust padding for size */
-            cursor: pointer; /* Pointer on hover */
-            font-size: 14px; /* Font size */
-            margin: 10px 0; /* Space above and below the button */
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 10px 0;
         }
         .download-button:hover {
-            background-color: #333; /* Darker shade on hover */
+            background-color: #333;
         }
         .slider {
-            width: 10%; /* Adjust width as needed */
-            margin: 20px 0; /* Space around the slider */
+            width: 10%;
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
-    <h2><img src="logo.svg" alt="Logo" class="logo">AH Icons</h2>
+    <h2><img src="logo.svg" alt="AH Icons Logo" class="logo"> AH Icons</h2>
 
     <!-- Download Button -->
-    <button class="download-button" onclick="downloadZip()">Download All</button>
+    <button class="download-button" onclick="downloadZip()" aria-label="Download all icons">Download All</button>
 
     <!-- Size Slider -->
     <label for="size-slider">Icon Size:</label>
- <input type="range" id="size-slider" class="slider" min="30" max="200" value="30">
-
+    <input type="range" id="size-slider" class="slider" min="30" max="200" value="30" aria-label="Adjust icon size">
 
     <div class="gallery" id="gallery"></div>
 
     <script>
         const svgFiles = [
-            // Add the names of your SVG files here
             'Airfryer_Icon_AH_filled.svg',
             'Airfryer_Icon_AH_outlined.svg',
             'Bowl_Icon_AH_filled.svg',
@@ -122,45 +120,35 @@
             'Timer-5-mintuten-AH-outline.svg',
         ];
 
-       const gallery = document.getElementById('gallery');
-const slider = document.getElementById('size-slider');
+        const gallery = document.getElementById('gallery');
+        const slider = document.getElementById('size-slider');
 
-// Set the default size based on the slider's minimum value
-const defaultSize = slider.min;
-svgFiles.forEach(file => {
-    const img = document.createElement('img');
-    img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
-    img.alt = file;
-    img.style.width = `${defaultSize}px`; // Set initial width to the smallest size
-    gallery.appendChild(img);
-});
+        const defaultSize = slider.min;
+        svgFiles.forEach(file => {
+            const img = document.createElement('img');
+            img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
+            img.alt = `${file.replace(/_/g, ' ').replace('.svg', '')} icon`;
+            img.style.width = `${defaultSize}px`;
+            gallery.appendChild(img);
+        });
 
-// Update image sizes based on slider input
-slider.addEventListener('input', () => {
-    const images = document.querySelectorAll('.gallery img');
-    images.forEach(image => {
-        image.style.width = `${slider.value}px`; // Ensure width is based on the slider value directly
-    });
-});
+        // Update image sizes based on slider input
+        slider.addEventListener('input', () => {
+            const images = document.querySelectorAll('.gallery img');
+            images.forEach(image => {
+                image.style.width = `${slider.value}px`;
+            });
+        });
 
         // Function to download the ZIP file
         function downloadZip() {
             const link = document.createElement('a');
-            link.href = 'https://github.com/pieterfrank/ahicons/raw/main/ahicons.zip'; // Update with your repo details
-            link.download = 'ahicons.zip'; // Specify the file name
+            link.href = 'https://github.com/pieterfrank/ahicons/raw/main/ahicons.zip';
+            link.download = 'ahicons.zip';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
-
-    // Update image sizes based on slider input
-slider.addEventListener('input', () => {
-    const images = document.querySelectorAll('.gallery img');
-    images.forEach(image => {
-        image.style.width = `${slider.value}px`; // Set width based on the slider's value directly
-    });
-});
-
     </script>
 </body>
 </html>
