@@ -194,27 +194,6 @@
             link.click();
             document.body.removeChild(link);
         }
-        svgFiles.forEach(file => {
-    const img = document.createElement('img');
-    img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
-    img.alt = `${file.replace(/_/g, ' ').replace('.svg', '')} icon`;
-    img.style.width = `${defaultSize}px`;
-    
-    // Mouse over and mouse out events
-    img.addEventListener('mouseover', () => {
-        img.style.filter = 'brightness(1.2)';
-        img.style.fill = '#ff0000'; // Change to your desired hover color
-    });
-    
-    img.addEventListener('mouseout', () => {
-        img.style.filter = 'brightness(1)';
-        img.style.fill = ''; // Reset to original color
-    });
-
-    img.onclick = () => downloadFile(file);
-    gallery.appendChild(img);
-});
-
     </script>
 </body>
 </html>
