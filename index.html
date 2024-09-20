@@ -142,15 +142,28 @@
             });
         });
 
-        // Function to download the individual SVG file
-        function downloadFile(fileName) {
-            const link = document.createElement('a');
-            link.href = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName}`;
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
+      // Function to download the individual SVG file
+async function downloadFile(fileName) {
+    const url = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName}`;
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+        
+        const blob = await response.blob();
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        
+        // Append to body, click and remove
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    } catch (error) {
+        console.error('There was a problem with the download:', error);
+    }
+}
+
 
         // Function to download all icons as a ZIP file
         function downloadAllZip() {
