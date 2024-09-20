@@ -122,14 +122,26 @@
             'Timer-5-mintuten-AH-outline.svg',
         ];
 
-        const gallery = document.getElementById('gallery');
-        svgFiles.forEach(file => {
-            const img = document.createElement('img');
-            img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
-            img.alt = file;
-            img.style.width = '24px'; // Initial width
-            gallery.appendChild(img);
-        });
+       const gallery = document.getElementById('gallery');
+const slider = document.getElementById('size-slider');
+
+// Set the default size based on the slider's minimum value
+const defaultSize = slider.min;
+svgFiles.forEach(file => {
+    const img = document.createElement('img');
+    img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
+    img.alt = file;
+    img.style.width = `${defaultSize}px`; // Set initial width to the smallest size
+    gallery.appendChild(img);
+});
+
+// Update image sizes based on slider input
+slider.addEventListener('input', () => {
+    const images = document.querySelectorAll('.gallery img');
+    images.forEach(image => {
+        image.style.width = `${slider.value}px`; // Ensure width is based on the slider value directly
+    });
+});
 
         // Function to download the ZIP file
         function downloadZip() {
