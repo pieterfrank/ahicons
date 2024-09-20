@@ -142,23 +142,40 @@
             });
         });
 
-      // Function to download the individual SVG file
+     // Function to download the individual SVG and EPS files
 async function downloadFile(fileName) {
-    const url = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName}`;
-    
+    const svgUrl = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName}`;
+    const epsUrl = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${fileName.replace('.svg', '.eps')}`;
+
     try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Network response was not ok');
-        
-        const blob = await response.blob();
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = fileName;
-        
-        // Append to body, click and remove
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // Fetch SVG file
+        const svgResponse = await fetch(svgUrl);
+        if (!svgResponse.ok) throw new Error('SVG Network response was not ok');
+
+        const svgBlob = await svgResponse.blob();
+        const svgLink = document.createElement('a');
+        svgLink.href = window.URL.createObjectURL(svgBlob);
+        svgLink.download = fileName;
+
+        // Trigger SVG download
+        document.body.appendChild(svgLink);
+        svgLink.click();
+        document.body.removeChild(svgLink);
+
+        // Fetch EPS file
+        const epsResponse = await fetch(epsUrl);
+        if (!epsResponse.ok) throw new Error('EPS Network response was not ok');
+
+        const epsBlob = await epsResponse.blob();
+        const epsLink = document.createElement('a');
+        epsLink.href = window.URL.createObjectURL(epsBlob);
+        epsLink.download = fileName.replace('.svg', '.eps');
+
+        // Trigger EPS download
+        document.body.appendChild(epsLink);
+        epsLink.click();
+        document.body.removeChild(epsLink);
+
     } catch (error) {
         console.error('There was a problem with the download:', error);
     }
