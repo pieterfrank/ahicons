@@ -48,8 +48,8 @@
         }
         /* Style for the divider */
         hr {
-            border: 1px solid #E7E9EB;
-            width: 100%;
+            border: 1px solid #ccc;
+            width: 80%;
             margin: 20px auto;
         }
     </style>
@@ -62,6 +62,9 @@
     <button class="download-button" onclick="downloadAllZip()" aria-label="Download all icons">Download All</button>
     <label for="size-slider">Icon Size:</label>
     <input type="range" id="size-slider" class="slider" min="30" max="200" value="30" aria-label="Adjust icon size">
+
+    <!-- Divider above the entire gallery -->
+    <hr>
 
     <!-- Gallery for food icons -->
     <div class="gallery" id="food-gallery"></div>
@@ -77,6 +80,9 @@
 
     <!-- Gallery for non-food icons -->
     <div class="gallery" id="nonfood-gallery"></div>
+
+    <!-- Divider below the entire gallery -->
+    <hr>
 
     <script>
         // Grouped arrays for each category
@@ -112,7 +118,6 @@
             'Waterdruppel_Icon_AH_filled.svg',
             'Waterdruppel_Icon_AH_outlined.svg',
             'AuBainMarie-AH-outlined.svg',
-            'Ontdooien-AH-Outlined.svg',
             'Broodrooster-AH-outlined.svg'
         ];
 
@@ -143,6 +148,7 @@
 
         const nonFoodIcons = [
             'Klok-AH-outlined.svg',
+            'Ontdooien-AH-Outlined.svg',
             'Timer-5-mintuten-AH-outline.svg'
         ];
 
