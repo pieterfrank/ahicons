@@ -13,22 +13,26 @@
         h1 {
             font-size: 24px;
         }
+        h2 {
+            font-size: 20px;
+            margin-top: 30px;
+        }
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
          .gallery img {
-        margin: 10px;
-        max-width: 150px;
-        height: auto;
-        cursor: pointer;
-        transition: filter 0.3s ease; /* Smooth transition */
-    }
+            margin: 10px;
+            max-width: 150px;
+            height: auto;
+            cursor: pointer;
+            transition: filter 0.3s ease; /* Smooth transition */
+        }
 
-  .gallery img:hover {
-    filter: brightness(1.2) contrast(1.2); /* Brightens and adds contrast on hover */
-}
+        .gallery img:hover {
+            filter: brightness(1.2) contrast(1.2); /* Brightens and adds contrast on hover */
+        }
         .download-button {
             background-color: black;
             color: white;
@@ -51,86 +55,110 @@
 <body>
     <div style="display: flex; align-items: center; justify-content: center;">
         <img src="logo.svg" alt="Logo" style="height: 20px; margin-right: 10px;">
-        <h2 style="margin: 0;">icons</h2> <!-- Added margin: 0; to remove default spacing -->
+        <h2 style="margin: 0;">icons</h2>
     </div>
     <button class="download-button" onclick="downloadAllZip()" aria-label="Download all icons">Download All</button>
     <label for="size-slider">Icon Size:</label>
     <input type="range" id="size-slider" class="slider" min="30" max="200" value="30" aria-label="Adjust icon size">
-    <div class="gallery" id="gallery"></div>
+
+    <h2>Food Icons</h2>
+    <div class="gallery" id="food-gallery"></div>
+
+    <h2>Koffie Icons</h2>
+    <div class="gallery" id="koffie-gallery"></div>
+
+    <h2>Non Food Icons</h2>
+    <div class="gallery" id="nonfood-gallery"></div>
 
     <script>
-        const svgFiles = [
+        // Grouped arrays for each category
+        const foodIcons = [
             'Airfryer_Icon_AH_filled.svg',
-'Airfryer_Icon_AH_outlined.svg',
-'Bowl_Icon_AH_filled.svg',
-'Bowl_Icon_AH_outlined.svg',
-'Cappuchino_Icon_AH_Flat.svg',
-'Dolce_Gusto_Icon_AH_Flat.svg',
-'Dulce_Gusto_Cup_Icon_AH_Flat.svg',
-'Dulce_Gusto_Cup_Icon_AH_Inverted_Flat.svg',
-'Espresso_Icon_AH_Flat.svg',
-'Espresso_Machine_Icon_AH_Flat.svg',
-'Filterautomaat_Icon_AH_Flat.svg',
-'Frituur_Netje_Icon_AH_filled.svg',
-'Frituur_Netje_Icon_AH_outlined.svg',
-'Frying_Pan_Top_Icon_AH_filled.svg',
-'Frying_Pan_Top_Icon_AH_outlined.svg',
-'Grain_Icon_AH_filled.svg',
-'Grain_Icon_AH_outlined.svg',
-'Grill_Icon_AH_filled.svg',
-'Grill_Icon_AH_outlined.svg',
-'Grill_Pan_Icon_AH_filled.svg',
-'Grill_Pan_Icon_AH_outlined.svg',
-'Koffie_Iconen_Albert_Heijn_9mm.svg',
-'Koffieboon_Icon_AH_Flat.svg',
-'Koffieboontjes_Icon_AH_Flat.svg',
-'Koffieschepje_Icon_AH_Flat.svg',
-'Latte_Icon_AH.svg',
-'Lungo_Icon_AH_Flat.svg',
-'Microwave_Icon_AH_filled.svg',
-'Microwave_Icon_AH_outlined.svg',
-'Moka_Icon_AH_Flat.svg',
-'Nespresso_Cup_Icon_AH_filled_Flat.svg',
-'Nespresso_Cup_Icon_AH_outlined_Flat.svg',
-'Nespresso_Icon_AH_Flat.svg',
-'Opschenk_Icon_AH_Flat.svg',
-'Oven_Airfryer_Icon_AH_filled.svg',
-'Oven_Airfryer_Icon_AH_outlined.svg',
-'Oven_Icon_AH_filled.svg',
-'Oven_Icon_AH_outlined.svg',
-'Pan_Icon_AH_filled.svg',
-'Pan_Icon_AH_outlined.svg',
-'Risteretto_Icon_AH_Flat.svg',
-'Senseo_AH_Flat.svg',
-'Senseo_Pads_Icon_AH.svg',
-'Staafmixer_Icon_AH_filled.svg',
-'Staafmixer_Icon_AH_outlined.svg',
-'Volautomaat_Icon_AH_Flat.svg',
-'Waterdruppel_Icon_AH_filled.svg',
-'Waterdruppel_Icon_AH_outlined.svg',
-'Wok_Icon_AH_filled.svg',
-'Wok_Icon_AH_outlined.svg',
-'AuBainMarie-AH-outlined.svg',
-'Broodrooster-AH-outlined.svg',
-'Klok-AH-outlined.svg',
-'Ontdooien-AH-Outlined.svg',
-'Stamper-AH-outlined.svg',
-'Stoommandje-AH-Outlined.svg',
-'Timer-5-mintuten-AH-outline.svg',
+            'Airfryer_Icon_AH_outlined.svg',
+            'Bowl_Icon_AH_filled.svg',
+            'Bowl_Icon_AH_outlined.svg',
+            'Grain_Icon_AH_filled.svg',
+            'Grain_Icon_AH_outlined.svg',
+            'Grill_Icon_AH_filled.svg',
+            'Grill_Icon_AH_outlined.svg',
+            'Frying_Pan_Top_Icon_AH_filled.svg',
+            'Frying_Pan_Top_Icon_AH_outlined.svg',
+            'Grill_Pan_Icon_AH_filled.svg',
+            'Grill_Pan_Icon_AH_outlined.svg',
+            'Wok_Icon_AH_filled.svg',
+            'Wok_Icon_AH_outlined.svg',
+            'Pan_Icon_AH_filled.svg',
+            'Pan_Icon_AH_outlined.svg',
+            'Stamper-AH-outlined.svg',
+            'Stoommandje-AH-Outlined.svg'
         ];
 
-        const gallery = document.getElementById('gallery');
+        const koffieIcons = [
+            'Cappuchino_Icon_AH_Flat.svg',
+            'Dolce_Gusto_Icon_AH_Flat.svg',
+            'Dulce_Gusto_Cup_Icon_AH_Flat.svg',
+            'Dulce_Gusto_Cup_Icon_AH_Inverted_Flat.svg',
+            'Espresso_Icon_AH_Flat.svg',
+            'Espresso_Machine_Icon_AH_Flat.svg',
+            'Filterautomaat_Icon_AH_Flat.svg',
+            'Koffie_Iconen_Albert_Heijn_9mm.svg',
+            'Koffieboon_Icon_AH_Flat.svg',
+            'Koffieboontjes_Icon_AH_Flat.svg',
+            'Koffieschepje_Icon_AH_Flat.svg',
+            'Latte_Icon_AH.svg',
+            'Lungo_Icon_AH_Flat.svg',
+            'Moka_Icon_AH_Flat.svg',
+            'Nespresso_Cup_Icon_AH_filled_Flat.svg',
+            'Nespresso_Cup_Icon_AH_outlined_Flat.svg',
+            'Nespresso_Icon_AH_Flat.svg',
+            'Opschenk_Icon_AH_Flat.svg',
+            'Risteretto_Icon_AH_Flat.svg',
+            'Senseo_AH_Flat.svg',
+            'Senseo_Pads_Icon_AH.svg',
+            'Volautomaat_Icon_AH_Flat.svg'
+        ];
+
+        const nonFoodIcons = [
+            'Microwave_Icon_AH_filled.svg',
+            'Microwave_Icon_AH_outlined.svg',
+            'Staafmixer_Icon_AH_filled.svg',
+            'Staafmixer_Icon_AH_outlined.svg',
+            'Oven_Airfryer_Icon_AH_filled.svg',
+            'Oven_Airfryer_Icon_AH_outlined.svg',
+            'Oven_Icon_AH_filled.svg',
+            'Oven_Icon_AH_outlined.svg',
+            'Frituur_Netje_Icon_AH_filled.svg',
+            'Frituur_Netje_Icon_AH_outlined.svg',
+            'Waterdruppel_Icon_AH_filled.svg',
+            'Waterdruppel_Icon_AH_outlined.svg',
+            'AuBainMarie-AH-outlined.svg',
+            'Broodrooster-AH-outlined.svg',
+            'Klok-AH-outlined.svg',
+            'Ontdooien-AH-Outlined.svg',
+            'Timer-5-mintuten-AH-outline.svg'
+        ];
+
+        const foodGallery = document.getElementById('food-gallery');
+        const koffieGallery = document.getElementById('koffie-gallery');
+        const nonFoodGallery = document.getElementById('nonfood-gallery');
         const slider = document.getElementById('size-slider');
 
-        // Populate the gallery with images
-        svgFiles.forEach(file => {
-            const img = document.createElement('img');
-            img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
-            img.alt = `${file.replace(/_/g, ' ').replace('.svg', '')} icon`;
-            img.style.width = `${slider.value}px`;
-            img.onclick = () => downloadFile(file);
-            gallery.appendChild(img);
-        });
+        // Function to populate galleries
+        function populateGallery(iconArray, galleryElement) {
+            iconArray.forEach(file => {
+                const img = document.createElement('img');
+                img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file}`;
+                img.alt = `${file.replace(/_/g, ' ').replace('.svg', '')} icon`;
+                img.style.width = `${slider.value}px`;
+                img.onclick = () => downloadFile(file);
+                galleryElement.appendChild(img);
+            });
+        }
+
+        // Populate each gallery with icons
+        populateGallery(foodIcons, foodGallery);
+        populateGallery(koffieIcons, koffieGallery);
+        populateGallery(nonFoodIcons, nonFoodGallery);
 
         // Update image sizes based on slider input
         slider.addEventListener('input', () => {
