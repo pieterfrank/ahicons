@@ -18,7 +18,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-         .gallery img {
+        .gallery img {
             margin: 10px;
             max-width: 150px;
             height: auto;
@@ -46,6 +46,12 @@
             width: 10%;
             margin: 20px 0;
         }
+        /* Style for the divider */
+        hr {
+            border: 1px solid #ccc;
+            width: 80%;
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
@@ -57,9 +63,19 @@
     <label for="size-slider">Icon Size:</label>
     <input type="range" id="size-slider" class="slider" min="30" max="200" value="30" aria-label="Adjust icon size">
 
-    <!-- Combined gallery div for all grouped icons -->
+    <!-- Gallery for food icons -->
     <div class="gallery" id="food-gallery"></div>
+
+    <!-- Divider between groups -->
+    <hr>
+
+    <!-- Gallery for koffie icons -->
     <div class="gallery" id="koffie-gallery"></div>
+
+    <!-- Divider between groups -->
+    <hr>
+
+    <!-- Gallery for non-food icons -->
     <div class="gallery" id="nonfood-gallery"></div>
 
     <script>
@@ -82,7 +98,7 @@
             'Pan_Icon_AH_filled.svg',
             'Pan_Icon_AH_outlined.svg',
             'Stamper-AH-outlined.svg',
-            'Stoommandje-AH-Outlined.svg',
+            'Stoommandje-AH-Outlined.svg', 
             'Microwave_Icon_AH_filled.svg',
             'Microwave_Icon_AH_outlined.svg',
             'Staafmixer_Icon_AH_filled.svg',
