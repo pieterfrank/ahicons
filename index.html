@@ -59,65 +59,71 @@
     <div class="gallery" id="gallery"></div>
 
     <script>
-        const svgFiles = [
-            'Airfryer_Icon_AH_filled.svg',
-'Airfryer_Icon_AH_outlined.svg',
-'Bowl_Icon_AH_filled.svg',
-'Bowl_Icon_AH_outlined.svg',
-'Cappuchino_Icon_AH_Flat.svg',
-'Dolce_Gusto_Icon_AH_Flat.svg',
-'Dulce_Gusto_Cup_Icon_AH_Flat.svg',
-'Dulce_Gusto_Cup_Icon_AH_Inverted_Flat.svg',
-'Espresso_Icon_AH_Flat.svg',
-'Espresso_Machine_Icon_AH_Flat.svg',
-'Filterautomaat_Icon_AH_Flat.svg',
-'Frituur_Netje_Icon_AH_filled.svg',
-'Frituur_Netje_Icon_AH_outlined.svg',
-'Frying_Pan_Top_Icon_AH_filled.svg',
-'Frying_Pan_Top_Icon_AH_outlined.svg',
-'Grain_Icon_AH_filled.svg',
-'Grain_Icon_AH_outlined.svg',
-'Grill_Icon_AH_filled.svg',
-'Grill_Icon_AH_outlined.svg',
-'Grill_Pan_Icon_AH_filled.svg',
-'Grill_Pan_Icon_AH_outlined.svg',
-'Koffie_Iconen_Albert_Heijn_9mm.svg',
-'Koffieboon_Icon_AH_Flat.svg',
-'Koffieboontjes_Icon_AH_Flat.svg',
-'Koffieschepje_Icon_AH_Flat.svg',
-'Latte_Icon_AH.svg',
-'Lungo_Icon_AH_Flat.svg',
-'Microwave_Icon_AH_filled.svg',
-'Microwave_Icon_AH_outlined.svg',
-'Moka_Icon_AH_Flat.svg',
-'Nespresso_Cup_Icon_AH_filled_Flat.svg',
-'Nespresso_Cup_Icon_AH_outlined_Flat.svg',
-'Nespresso_Icon_AH_Flat.svg',
-'Opschenk_Icon_AH_Flat.svg',
-'Oven_Airfryer_Icon_AH_filled.svg',
-'Oven_Airfryer_Icon_AH_outlined.svg',
-'Oven_Icon_AH_filled.svg',
-'Oven_Icon_AH_outlined.svg',
-'Pan_Icon_AH_filled.svg',
-'Pan_Icon_AH_outlined.svg',
-'Risteretto_Icon_AH_Flat.svg',
-'Senseo_AH_Flat.svg',
-'Senseo_Pads_Icon_AH.svg',
-'Staafmixer_Icon_AH_filled.svg',
-'Staafmixer_Icon_AH_outlined.svg',
-'Volautomaat_Icon_AH_Flat.svg',
-'Waterdruppel_Icon_AH_filled.svg',
-'Waterdruppel_Icon_AH_outlined.svg',
-'Wok_Icon_AH_filled.svg',
-'Wok_Icon_AH_outlined.svg',
-'AuBainMarie-AH-outlined.svg',
-'Broodrooster-AH-outlined.svg',
-'Klok-AH-outlined.svg',
-'Ontdooien-AH-Outlined.svg',
-'Stamper-AH-outlined.svg',
-'Stoommandje-AH-Outlined.svg',
-'Timer-5-mintuten-AH-outline.svg',
-        ];
+const svgFiles = [
+    // Food category
+    { name: 'Airfryer_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Airfryer_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Bowl_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Bowl_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Frituur_Netje_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Frituur_Netje_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Frying_Pan_Top_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Frying_Pan_Top_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Grain_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Grain_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Grill_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Grill_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Grill_Pan_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Grill_Pan_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Microwave_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Microwave_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Oven_Airfryer_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Oven_Airfryer_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Oven_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Oven_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Pan_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Pan_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Wok_Icon_AH_filled.svg', category: 'food' },
+    { name: 'Wok_Icon_AH_outlined.svg', category: 'food' },
+    { name: 'Stamper-AH-outlined.svg', category: 'food' },
+    { name: 'Stoommandje-AH-Outlined.svg', category: 'food' },
+
+    // Koffie category
+    { name: 'Cappuchino_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Dolce_Gusto_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Dulce_Gusto_Cup_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Dulce_Gusto_Cup_Icon_AH_Inverted_Flat.svg', category: 'koffie' },
+    { name: 'Espresso_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Espresso_Machine_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Filterautomaat_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Koffie_Iconen_Albert_Heijn_9mm.svg', category: 'koffie' },
+    { name: 'Koffieboon_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Koffieboontjes_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Koffieschepje_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Latte_Icon_AH.svg', category: 'koffie' },
+    { name: 'Lungo_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Moka_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Nespresso_Cup_Icon_AH_filled_Flat.svg', category: 'koffie' },
+    { name: 'Nespresso_Cup_Icon_AH_outlined_Flat.svg', category: 'koffie' },
+    { name: 'Nespresso_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Opschenk_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Risteretto_Icon_AH_Flat.svg', category: 'koffie' },
+    { name: 'Senseo_AH_Flat.svg', category: 'koffie' },
+    { name: 'Senseo_Pads_Icon_AH.svg', category: 'koffie' },
+    { name: 'Volautomaat_Icon_AH_Flat.svg', category: 'koffie' },
+
+    // Nonfood category
+    { name: 'Klok-AH-outlined.svg', category: 'nonfood' },
+    { name: 'Ontdooien-AH-Outlined.svg', category: 'nonfood' },
+    { name: 'Broodrooster-AH-outlined.svg', category: 'nonfood' },
+    { name: 'AuBainMarie-AH-outlined.svg', category: 'nonfood' },
+    { name: 'Staafmixer_Icon_AH_filled.svg', category: 'nonfood' },
+    { name: 'Staafmixer_Icon_AH_outlined.svg', category: 'nonfood' },
+    { name: 'Timer-5-mintuten-AH-outline.svg', category: 'nonfood' },
+    { name: 'Waterdruppel_Icon_AH_filled.svg', category: 'nonfood' },
+    { name: 'Waterdruppel_Icon_AH_outlined.svg', category: 'nonfood' },
+];
+
 
         const gallery = document.getElementById('gallery');
         const slider = document.getElementById('size-slider');
@@ -174,6 +180,36 @@
             link.click();
             document.body.removeChild(link);
         }
+        // Function to display icons based on category
+function filterIcons(category) {
+    // Clear the gallery first
+    gallery.innerHTML = '';
+
+    // Filter SVG files by the selected category
+    const filteredFiles = category === 'all' ? svgFiles : svgFiles.filter(file => file.category === category);
+
+    // Display the filtered icons
+    filteredFiles.forEach(file => {
+        const img = document.createElement('img');
+        img.src = `https://raw.githubusercontent.com/pieterfrank/ahicons/main/${file.name}`;
+        img.alt = `${file.name.replace(/_/g, ' ').replace('.svg', '')} icon`;
+        img.style.width = `${slider.value}px`;
+        img.onclick = () => downloadFile(file.name);
+        gallery.appendChild(img);
+    });
+}
+
+// Populate the gallery with all icons initially
+filterIcons('all');
+
+// Update image sizes based on slider input
+slider.addEventListener('input', () => {
+    const images = document.querySelectorAll('.gallery img');
+    images.forEach(image => {
+        image.style.width = `${slider.value}px`;
+    });
+});
+
     </script>
 </body>
 </html>
